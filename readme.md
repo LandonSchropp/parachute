@@ -2,7 +2,7 @@
 
 *Class List* is an application for teachers that takes a list of students and generates sets of student pairs. Each student should be paired with every other student and no student should work with the same student more than once.
 
-For example, let's say the class has four students: Bob, Lisa, Duke and Tyrone. This application will generate these lists:
+For example, let's say the class has four students: Bob, Lisa, Duke and Tyrone. *Class List* will generate these lists:
 
 ```
 [ [ "Bob", "Lisa" ], [ "Duke", "Tyrone" ] ]
