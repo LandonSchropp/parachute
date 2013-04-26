@@ -14,7 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <!-- Use title if it's in the page YAML frontmatter -->
-    <title><%= data.page.title || "Landon Schropp" %></title>
+    <title>Class List</title>
     
     <!-- Include the stylesheets. -->
     <%= stylesheet_link_tag "application" %>
@@ -28,10 +28,10 @@
     <link rel="icon" type="image/ico" href="favicon.ico" />
 
     <!-- Load Modernizr -->
-    <script type="text/javascript" src="/javascripts/libraries/modernizr-2.6.2.min.js"></script>
+    <%= javascript_include_tag "libraries/modernizr-2.6.2.min.js" %>   
 
     <!-- Load the application -->
-    <script src="/javascripts/application.js"></script>
+    <%= javascript_include_tag "application" %>
   </head>
   
   <body>
