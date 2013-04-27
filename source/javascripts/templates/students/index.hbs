@@ -1,5 +1,7 @@
-<ul>
+<ul class="students">
   {{#each this}}
-    <li>{{name}}</li>
+    <li class="student">
+      {{view Ember.TextField valueBinding="name"}}
+    </li>
   {{/each}}
 </ul>

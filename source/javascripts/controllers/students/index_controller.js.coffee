@@ -1,3 +1,4 @@
+# The controller responsible for mutating the students list.
 ClassList.StudentsIndexController = Ember.ArrayController.extend
 
   # Adds the student contained in student to this controller.
