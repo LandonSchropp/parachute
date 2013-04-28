@@ -1,7 +1,5 @@
-    <ul class="editable-list">
-      {{#each this}}
-        <li>
-          {{view Ember.TextField valueBinding="name"}}
-        </li>
-      {{/each}}
-    </ul>
+{{#each this}}
+  <li>
+    {{view Ember.TextField valueBinding="name"}}
+  </li>
+{{/each}}
