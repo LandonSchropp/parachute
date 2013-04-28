@@ -29,7 +29,7 @@ ClassList.EditableListView = Ember.View.extend({
         @_selectAt(index - 1)
         @itemDeleted = true
 
-    # if the enter key is pressed down
+    # insert an item if the enter key is pressed down
     if keyCode is 13
 
       @get("controller").insertAt(index + 1, {})
@@ -37,6 +37,18 @@ ClassList.EditableListView = Ember.View.extend({
 
       # select the new item after the insertion has propagated
       Ember.run.next(this, -> @_selectAt(index + 1))
+
+    # select the previous item if the up arrow is pressed
+    if keyCode is 38
+
+      @_selectAt(index - 1) 
+      event.preventDefault()
+
+    # select the next item if the down arrow is pressed
+    if keyCode is 40
+
+      @_selectAt(index + 1) 
+      event.preventDefault()
 
   # Retrieves the jQuery object representing the input elements in this editable list.
   _inputElements: -> @$().find("input")
