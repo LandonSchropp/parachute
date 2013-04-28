@@ -28,6 +28,7 @@ ClassList.EditableListView = Ember.View.extend({
         @get("controller").removeAt(index)
         @_selectAt(index - 1)
         @itemDeleted = true
+        event.preventDefault()
 
     # insert an item if the enter key is pressed down
     if keyCode is 13
