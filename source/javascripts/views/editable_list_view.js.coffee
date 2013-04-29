@@ -51,13 +51,6 @@ ClassList.EditableListView = Ember.View.extend({
       @_selectAt(index + 1) 
       event.preventDefault()
 
-  # Bind to the focus out event and add a new element at the end of the list if the last element is
-  # not empty.
-  focusOut: ->
-
-    inputs = @_inputElements()
-    @get("controller").insertAt(inputs.length, {}) if inputs[inputs.length - 1].value isnt ""
-
   # Retrieves the jQuery object representing the input elements in this editable list.
   _inputElements: -> @$().find("input")
 
