@@ -6,6 +6,11 @@ ClassList.StudentsIndexController = Ember.ArrayController.extend
 
   # The lists of groups.
   groups: []
+
+  # Returns true if the groups array is empty.
+  groupsEmpty: (->
+    @get("groups").length is 0
+  ).property("groups")
   
   # Sets the lists of groups of students. For example, if the students contained in this controller
   # are:
@@ -21,10 +26,11 @@ ClassList.StudentsIndexController = Ember.ArrayController.extend
   # ]
   updateGroups: ->
 
-    # remove all of the students whose names are empty or whitespace
-    students = @get("content").filter (student) -> student.name? and not /^\s*$/.test(student.name)
+    # create a deep copy of the filtered students so the students do not change when the students 
+    # are updated
+    students = Ember.copy(@_filteredStudents(), true)
 
-    # get the results of the round robin algorithm
+    # the the groups to the results of the round robin algorithm using the filtered students array
     @set("groups", @_roundRobin(students, Ember.copy(@emptyStudent)))
 
   # Returns an array of array of pairs of indices representing the result of the round robin
@@ -52,3 +58,7 @@ ClassList.StudentsIndexController = Ember.ArrayController.extend
     return items.map (rotatedItems) ->
       [0..(rotatedItems.length / 2 - 1)].map (i) ->
         [ rotatedItems[i], rotatedItems[rotatedItems.length - i - 1] ]
+
+  # Returns an array of students whose names are not empty or whitespace.
+  _filteredStudents: -> 
+    @get("content").filter (student) -> student.name? and not /^\s*$/.test(student.name)

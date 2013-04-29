@@ -1,22 +1,37 @@
 {{view ClassList.EditableListView}}
 
 <p>
-  <button {{action updateGroups}}>Generate lists</button>
+  <button {{action updateGroups}}>
+    {{#if groupsEmpty}}
+      Create the lists
+    {{else}}
+      Update the lists
+    {{/if}}
+  </button>
 </p>
 
-{{#each groups}}
+{{#if groupsEmpty}}
 
-  {{#view}}
-    <h2>List {{view._parentView.contentIndex}}</h2>
-  {{/view}}
+  <p class="instructions">To get started, type in your students' names and press the button.</p>
 
-  <table class="group-list">
-    {{#each this}}
-      <tr>
-        {{#each this }}
-         <td>{{name}}</td>
-        {{/each }}
-      </tr>
-    {{/each}}
-  </table>
-{{/each}}
+{{else}}
+
+  {{#each groups}}
+
+    {{#view}}
+      <h2>List {{view._parentView.contentIndex}}</h2>
+    {{/view}}
+
+    <table class="group-list">
+      {{#each this}}
+        <tr>
+          {{#each this }}
+           <td>{{name}}</td>
+          {{/each }}
+        </tr>
+      {{/each}}
+    </table>
+
+  {{/each}}
+
+{{/if}}
