@@ -1,30 +1,31 @@
 # The controller responsible for mutating the students list.
 ClassList.StudentsIndexController = Ember.ArrayController.extend
+
+  # An empty student, used to create other empty students.
+  emptyStudent: null
+
+  # The lists of groups.
+  groups: []
   
-  # Returns the lists of groups of students. For example, if the students contained in this students
-  # controller are:
+  # Sets the lists of groups of students. For example, if the students contained in this controller
+  # are:
   # 
   #     [ { name: "Bob" }, { name: "Lisa" }, { name: "Duke" }, { name: "Tyrone" } ]
   #
-  # then the expected output of this function is:
+  # then this function will set groups to:
   #
   # [
   #   [ [ { name: "Bob" }, { name: "Lisa" } ], [ { name: "Duke" }, { name: "Tyrone" } ] ],
   #   [ [ { name: "Bob" }, { name: "Tyrone" } ], [ { name: "Duke" }, { name: "Lisa" } ] ],
   #   [ [ { name: "Bob" }, { name: "Duke" } ], [ { name: "Lisa" }, { name: "Tyrone" } ] ]
   # ]
-  groups: (->
+  updateGroups: ->
 
-    # remove all of the students whose names are empty or only whitespace
+    # remove all of the students whose names are empty or whitespace
     students = @get("content").filter (student) -> student.name? and not /^\s*$/.test(student.name)
 
-    # create a blank student
-    blank_student = { name: "" }
-
     # get the results of the round robin algorithm
-    roundRobinResults = @_roundRobin(students, blank_student)
-
-  ).property("content.length")
+    @set("groups", @_roundRobin(students, Ember.copy(@emptyStudent)))
 
   # Returns an array of array of pairs of indices representing the result of the round robin
   # algorithm for the provided number of items to pair. If the provided items contains an odd nubmer
