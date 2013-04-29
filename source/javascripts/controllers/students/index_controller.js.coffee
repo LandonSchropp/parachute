@@ -1,7 +1,7 @@
 # The controller responsible for mutating the students list.
 ClassList.StudentsIndexController = Ember.ArrayController.extend
   
-  # Returns the lists of pairs of students. For example, if the students contained in this students
+  # Returns the lists of groups of students. For example, if the students contained in this students
   # controller are:
   # 
   #     [ { name: "Bob" }, { name: "Lisa" }, { name: "Duke" }, { name: "Tyrone" } ]
@@ -15,69 +15,39 @@ ClassList.StudentsIndexController = Ember.ArrayController.extend
   # ]
   groups: (->
 
-    # remove all of the empty or blank elements
-    students = $.grep @get("content"), (student) -> student.name? and not /^\s*$/.test(student.name)
+    # remove all of the students whose names are empty or only whitespace
+    students = @get("content").filter (student) -> student.name? and not /^\s*$/.test(student.name)
 
-    # add an empty student the the number of students is null
-    students.push({ name: "" }) unless students.length % 2 is 0
+    # create a blank student
+    blank_student = { name: "" }
 
-    # handle the base cases
-    return [] if students.length is 0
-    return [ [ students[0], null ] ] if students.length is 1
-
-    # determine the number of lists and the list length
-    numberOfLists = students.length - 1
-    listLength = students.length / 2
-
-    # the array that contains the resulting lists
-    lists = [ ]
-
-    # iterate through each of the lists
-    for i in [ 0..(numberOfLists - 1) ]
-
-      collection = [ 0..(listLength - 1) ]
-
-      func = (index) -> 
-        [ students[index], students[students.length - 1 - index] ]
-
-      mapping = $.map([ 0..(listLength - 1) ], (index) -> 
-        [ students[index], students[students.length - 1 - index] ]
-      )
-
-      # determine the pairings for the current list
-      pairs = $.map [ 0..(listLength - 1) ], (index) -> 
-
-        # BUG FIX: Unfortunately, jQuery automatically flattens the inner array, so it's necessary 
-        # to double wrap it. I'm not using the browser's map function because I want cross-browser
-        # compatibility.
-        [ [ students[index], students[students.length - 1 - index] ] ]
-
-      # reverse and duplicate each pair in the list
-      pairs = $.map pairs, (pair) -> [ pair, [ pair[1], pair[0] ] ]
-
-      # remove the pairs beginning with a blank student from the list
-      unless students.lenght % 2 is 0
-        pairs = $.grep pairs, (pair) -> pair[0].name
-
-      # sort the pairs list
-      pairs = pairs.sort (first, second) ->
-        return -1 if first[0].name.toLowerCase() < second[0].name.toLowerCase()
-        return  1 if first[0].name.toLowerCase() > second[0].name.toLowerCase()
-        return 0;
-
-      lists.push(pairs)
-
-      # remove the fixed student from the array
-      fixedStudent = students.pop()
-
-      # rotate the students
-      rotatedStudent = students.shift()
-      students.push(rotatedStudent)
-
-      # add the fixed student back into the array
-      students.push(fixedStudent)
-
-    # return the lists
-    lists
+    # get the results of the round robin algorithm
+    roundRobinResults = @_roundRobin(students, blank_student)
 
   ).property("content.length")
+
+  # Returns an array of array of pairs of indices representing the result of the round robin
+  # algorithm for the provided number of items to pair. If the provided items contains an odd nubmer
+  # of elements, this algorithm adds the extra item to the result. The implementation for this 
+  # algorithm was taken from: http://stackoverflow.com/questions/16207837.
+  #
+  # TODO: Move this into a separate object (single responsibility rule).
+  _roundRobin: (items, extra_item) ->
+
+    # base case
+    return [] if items.length is 0
+
+    # clone the items to the original items aren't changed
+    items = Ember.copy(items)
+
+    # add the extra item the number of items is odd
+    items.push(extra_item) if items.length % 2 is 1
+
+    # map the items to arrays of rotated items (fixing the pivot item)
+    items = [ 0..(items.length - 2) ].map (i) ->
+      [ items[0] ].concat(items.slice(i + 1), items.slice(1, 1 + i))
+
+    # fold the items on themselves to form pairs and return the result
+    return items.map (rotatedItems) ->
+      [0..(rotatedItems.length / 2 - 1)].map (i) ->
+        [ rotatedItems[i], rotatedItems[rotatedItems.length - i - 1] ]
