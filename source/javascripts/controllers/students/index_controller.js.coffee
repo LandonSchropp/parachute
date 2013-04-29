@@ -30,8 +30,20 @@ ClassList.StudentsIndexController = Ember.ArrayController.extend
     # are updated
     students = Ember.copy(@_filteredStudents(), true)
 
+    # get the results of the round robin algorithm
+    results = @_roundRobin(students, Ember.copy(@emptyStudent))
+
+    # HACK: This is a hack which allows the view to display the index of the list. Usually, the 
+    # best way to accomplish this is to the use the `@index` property in the view. However, the 
+    # handlebars sprockets gem compiles with an error `@index` is contained in the views. This is 
+    # probably due to an old version of Handlebars being used to compile the templates. Ideally, I 
+    # would fix the gem and submit a pull request on GitHub. However, given the scope of this 
+    # project, it's easier to hack together a solution for now.
+    for list, i in results
+      list.index = i + 1
+
     # the the groups to the results of the round robin algorithm using the filtered students array
-    @set("groups", @_roundRobin(students, Ember.copy(@emptyStudent)))
+    @set("groups", results)
 
   # Returns an array of array of pairs of indices representing the result of the round robin
   # algorithm for the provided number of items to pair. If the provided items contains an odd nubmer
