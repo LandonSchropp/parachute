@@ -1,4 +1,4 @@
 ClassList.Router.map ->
-  @resource "students", ->
+  @resource "students", path: "/", ->
     @route 'index', path: '/'
   
