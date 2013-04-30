@@ -1,42 +1,14 @@
 require "sprockets/ember_handlebars_template"
 
-###
-# Compass
-###
-
-# Change Compass configuration
-# compass_config do |config|
-#   config.output_style = :compact
-# end
-
-###
-# Page options, layouts, aliases and proxies
-###
-
 # remove the layout from the application
 page "/*", :layout => false
 
-###
-# Helpers
-###
-
-# Automatic image dimensions on image_tag helper
-# activate :automatic_image_sizes
-
-# Methods defined in the helpers block are available in templates
-# helpers do
-#   def some_helper
-#     "Helping"
-#   end
-# end
-
+# set the directories
 set :css_dir, 'stylesheets'
-
 set :js_dir, 'javascripts'
-
 set :images_dir, 'images'
 
-# Build-specific configuration
+# build configuration
 configure :build do
   # For example, change the Compass output style for deployment
   # activate :minify_css
