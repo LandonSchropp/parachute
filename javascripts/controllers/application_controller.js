@@ -1,0 +1,1 @@
+(function(){Parachute.StudentsController=Ember.ArrayController.extend({add:function(){return this.pushObject({name:this.get("student")}),this.set("student","")}})}).call(this);

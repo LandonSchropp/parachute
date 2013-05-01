@@ -1,0 +1,1 @@
+(function(){Parachute.StudentsIndexRoute=Ember.Route.extend({setupController:function(e){var t;return t={name:""},e.set("emptyStudent",t),e.set("content",[Ember.copy(t)])}})}).call(this);

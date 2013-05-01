@@ -1,0 +1,1 @@
+(function(){Parachute.ApplicationView=Em.View.extend({elementId:"container"})}).call(this);

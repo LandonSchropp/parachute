@@ -1,0 +1,1 @@
+(function(){Parachute.Router.map(function(){return this.resource("students",{path:"/"},function(){return this.route("index",{path:"/"})})})}).call(this);
