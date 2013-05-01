@@ -1,4 +1,4 @@
-ClassList.StudentsController = Ember.ArrayController.extend
+Parachute.StudentsController = Ember.ArrayController.extend
 
   # Adds the student contained in student to this controller.
   add: ->

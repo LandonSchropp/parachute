@@ -1,7 +1,7 @@
 ###
 A view that allows a user to view and edit a list of items. This view will add and remove items based upon the user's use of the enter and delete keys.
 ###
-ClassList.EditableListView = Ember.View.extend({
+Parachute.EditableListView = Ember.View.extend({
 
   tagName: "ul"
 

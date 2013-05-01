@@ -1,4 +1,4 @@
-ClassList.StudentsIndexRoute = Ember.Route.extend
+Parachute.StudentsIndexRoute = Ember.Route.extend
 
   setupController: (controller) ->
 

@@ -16,6 +16,6 @@
 (function($) {
 
   // start the application
-  window.ClassList = Ember.Application.create();
+  window.Parachute = Ember.Application.create();
 
 })(jQuery);

@@ -1,5 +1,5 @@
 # The controller responsible for mutating the students list.
-ClassList.StudentsIndexController = Ember.ArrayController.extend
+Parachute.StudentsIndexController = Ember.ArrayController.extend
 
   # An empty student, used to create other empty students.
   emptyStudent: null
