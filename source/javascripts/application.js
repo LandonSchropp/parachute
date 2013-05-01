@@ -3,6 +3,7 @@
 //= require libraries/jquery-1.9.1
 //= require libraries/handlebars-1.0.0-rc.3
 //= require libraries/ember-1.0.0-rc.3
+//= require libraries/jquery.caret
 
 // application
 

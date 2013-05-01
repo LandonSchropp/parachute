@@ -19,6 +19,9 @@ Parachute.EditableListView = Ember.View.extend({
     # ignore the event unless an element is selected
     return unless index?
 
+    # ignore the event if it's not a keyCode handled by this method
+    return if [ 8, 46, 13, 38, 40 ].indexOf(keyCode) is -1
+
     # if the delete key is pressed down
     if (keyCode is 8 or keyCode is 46)
 
@@ -39,16 +42,20 @@ Parachute.EditableListView = Ember.View.extend({
       # select the new item after the insertion has propagated
       Ember.run.next(this, -> @_selectAt(index + 1))
 
+      # BUG FIX: This fixes a problem where the enter button triggers an event for the input 
+      # element.
+      event.preventDefault()
+
     # select the previous item if the up arrow is pressed
     if keyCode is 38
 
-      @_selectAt(index - 1) 
+      @_selectAt(index - 1)
       event.preventDefault()
 
     # select the next item if the down arrow is pressed
     if keyCode is 40
 
-      @_selectAt(index + 1) 
+      @_selectAt(index + 1)
       event.preventDefault()
 
   # Retrieves the jQuery object representing the input elements in this editable list.
@@ -71,6 +78,5 @@ Parachute.EditableListView = Ember.View.extend({
     return unless index >= 0 and index < inputs.length
 
     # select the element at the end
-    inputs[index].selectionStart = inputs[index].value.length
-    inputs[index].selectionEnd   = inputs[index].selectionStart
+    $(inputs[index]).caret(inputs[index].value.length)
 });

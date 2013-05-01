@@ -8,25 +8,31 @@ set :css_dir, 'stylesheets'
 set :js_dir, 'javascripts'
 set :images_dir, 'images'
 
+# Automatically reload the page when the relevant files change
+activate :livereload
+
+# Set up deployments to GitHub pages
+activate :deploy do |deploy|
+  deploy.method = :git
+  deploy.branch = "master"
+end
+
 # build configuration
 configure :build do
+
   # For example, change the Compass output style for deployment
-  # activate :minify_css
+  activate :minify_css
 
   # Minify Javascript on build
-  # activate :minify_javascript
+  activate :minify_javascript
 
   # Enable cache buster
-  # activate :cache_buster
-
-  # Use relative URLs
-  # activate :relative_assets
+  activate :cache_buster
 
   # Compress PNGs after build
-  # First: gem install middleman-smusher
-  # require "middleman-smusher"
-  # activate :smusher
+  require "middleman-smusher"
+  activate :smusher
 
-  # Or use a different image path
-  # set :http_path, "/Content/images/"
+  # make the asset paths relative
+  activate :relative_assets
 end
