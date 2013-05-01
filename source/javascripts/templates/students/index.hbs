@@ -2,8 +2,8 @@
   {{view ClassList.EditableListView}}
 
   <p>
-    <button {{action updateGroups}}>
-      {{#if groupsEmpty}}
+    <button {{action updateListsOfPairs}}>
+      {{#if listsOfPairsEmpty}}
         Generate
       {{else}}
         Update
@@ -13,7 +13,7 @@
 </section>
 
 <section>
-  {{#if groupsEmpty}}
+  {{#if listsOfPairsEmpty}}
 
     <p class="instructions">
       Parachute is a tool by <a href="/">Landon Schropp</a> that generates lists of pairs. Each person is paired with every other person once.
@@ -21,11 +21,11 @@
 
   {{else}}
 
-    {{#each groups}}
+    {{#each listsOfPairs}}
       <section class="pairs">
         <h2>List {{index}}</h2>
 
-        <table class="group-list">
+        <table>
           {{#each this}}
             <tr>
               {{#each this }}

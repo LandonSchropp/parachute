@@ -5,12 +5,12 @@ ClassList.StudentsIndexController = Ember.ArrayController.extend
   emptyStudent: null
 
   # The lists of pairs.
-  groups: []
+  listsOfPairs: []
 
   # Returns true if the lists of pairs is empty.
-  groupsEmpty: (->
-    @get("groups").length is 0
-  ).property("groups")
+  listsOfPairsEmpty: (->
+    @get("listsOfPairs").length is 0
+  ).property("listsOfPairs")
   
   # Sets the lists of pairs of students. If the content of this controller is:
   # 
@@ -23,7 +23,7 @@ ClassList.StudentsIndexController = Ember.ArrayController.extend
   #   [ [ { name: "Bob" }, { name: "Tyrone" } ], [ { name: "Duke" }, { name: "Lisa" } ] ],
   #   [ [ { name: "Bob" }, { name: "Duke" } ], [ { name: "Lisa" }, { name: "Tyrone" } ] ]
   # ]
-  updateGroups: ->
+  updateListsOfPairs: ->
 
     # create a deep copy of the filtered students so the students do not change when the students 
     # are updated
@@ -67,8 +67,8 @@ ClassList.StudentsIndexController = Ember.ArrayController.extend
     for list, i in listsOfPairs
       list.index = i + 1
 
-    # the the groups to the results of the round robin algorithm using the filtered students array
-    @set("groups", listsOfPairs)
+    # set the lists of pairs
+    @set("listsOfPairs", listsOfPairs)
 
   # Returns an array of array of pairs of indices representing the result of the round robin
   # algorithm for the provided number of items to pair. If the provided items contains an odd nubmer
