@@ -11,7 +11,7 @@ header, section
 ul, h1, h2, p
 {
   // layout
-  margin: 2rem auto;
+  margin: 3rem auto;
   padding: 0 1rem;
 }
 
@@ -45,11 +45,11 @@ p
   line-height: 2em;
 
   // remove a little bit of top and bottom margins to compensate for the larget line height
-  margin-top: 1.25rem;
-  margin-bottom: 1.25rem;
+  margin-top: 2.25rem;
+  margin-bottom: 2.25rem;
 
   // style
-  color: $milk;
+  color: $ghost;
 }
 
 header p
