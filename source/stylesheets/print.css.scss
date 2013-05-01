@@ -1,0 +1,68 @@
+html, body
+{
+  // ensure the container can be sized with a minimum height the size of the viewport
+  height: 100%;
+
+  // set up the typography
+  font-size: 12pt;
+  font-family: 'Open Sans', sans-serif;
+}
+
+// hide the header, input and instructions
+.input, .instructions
+{
+  display: none;
+}
+
+// ensure the contents are centered
+header, section
+{
+  // make the sections smaller than the page width and center then
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+
+  // attempt to keep the sections from being broken up across pages
+  page-break-inside: avoid;
+}
+
+// style the headers
+h1
+{
+  font-size: 30pt;
+}
+
+h2
+{
+  font-size: 18pt;
+}
+
+// style the tables
+table
+{
+  width: 100%;
+
+  // collapse the table's borders
+  border-collapse: collapse;
+}
+
+tr
+{
+  // add a border between table rows
+  border-bottom: 1px solid #ddd;
+
+  &:last-of-type
+  {
+    // remove the border on the last element
+    border-bottom-width: 0;
+  }
+}
+
+td
+{
+  // ensure the table cells are devenly spaced
+  width: 50%;
+
+  // space out the cells
+  line-height: 1.75em;
+}

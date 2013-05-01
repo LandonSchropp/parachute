@@ -1,4 +1,4 @@
-<section>
+<section class="input">
   {{view Parachute.EditableListView}}
 
   <p>
@@ -12,12 +12,13 @@
   </p>
 </section>
 
-<section>
   {{#if listsOfPairsEmpty}}
 
-    <p class="instructions">
+  <section class="instructions">
+    <p>
       Parachute is a tool by <a href="/">Landon Schropp</a> that generates lists of pairs. Each person is paired with every other person once.
     </p>
+  </section>
 
   {{else}}
 
