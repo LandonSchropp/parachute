@@ -14,7 +14,6 @@ activate :livereload
 # Set up deployments to GitHub pages
 activate :deploy do |deploy|
   deploy.method = :git
-  deploy.branch = "master"
 end
 
 # build configuration
