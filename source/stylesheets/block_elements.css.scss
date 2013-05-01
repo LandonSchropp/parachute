@@ -1,0 +1,57 @@
+header, section
+{
+  // constrain the containers and center them on the page
+  max-width: 540px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+ul, h1, h2, p
+{
+  // layout
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+h1
+{
+  // type
+  text-transform: uppercase;
+  font-weight: 800;
+  text-align: center;
+
+  // layout
+  font-size: 3.5rem;
+
+  // compensate for the typeface's extra spacing by squeezing the line height a little bit
+  line-height: 0.75em;
+}
+
+h2
+{
+  // type
+  font-weight: 800;
+}
+
+p
+{
+  // type
+  text-align: center;
+
+  // layout
+  font-size: 1rem;
+  line-height: 2em;
+
+  // remove a little bit of top and bottom margins to compensate for the larget line height
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+
+  // style
+  color: $milk;
+}
+
+header p
+{
+  // prevent the header paragraph from appearing to have large margins caused by the line height
+  line-height: 1em;
+}

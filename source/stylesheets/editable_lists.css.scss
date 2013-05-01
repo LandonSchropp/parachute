@@ -1,0 +1,72 @@
+@import "variables";
+
+ul.editable-list
+{
+  // remove the default list styles
+  padding: 0;
+  list-style: none;
+
+  // add spacing around the sides of the list
+  margin-left: 1rem;
+  margin-right: 1rem;
+
+  // style
+  border: 1px solid $white;
+  border-radius: 0.5rem;
+  background-color: $smoke;
+
+  li
+  {
+    // add spacing around the inputs
+    margin: 0 1rem;
+
+    // a line below each list item
+    border-bottom: 1px solid $white;
+
+    // remove the line on the last item
+    &:last-of-type
+    {
+      border-bottom-width: 0;
+    }
+  }
+
+  input
+  {
+
+    // layout
+    font-size: 1.25rem;
+
+    // ensure the input takes up the width of its container
+    width: 100%;
+
+    // add a little spacing inside the input
+    padding: 0.65rem 0;
+    
+    // style
+    color: $white;
+
+    // remove the border and background
+    border-width: 0;
+    background-color: transparent;
+
+    // type
+    text-align: center;
+
+    @include placeholder
+    {
+      color: $ghost;
+    }
+
+    &:focus
+    {
+      // remove the outline in the user agent stylesheet
+      outline: none;
+
+      // remove the placeholder
+      @include placeholder
+      {
+        color: transparent;
+      }
+    }
+  }
+}

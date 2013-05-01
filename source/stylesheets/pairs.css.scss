@@ -1,0 +1,60 @@
+@import "variables";
+
+.pairs
+{
+  // ensure the pairs are spaced
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+
+  h2
+  {
+    // tighten up the space between the header and the talbe
+    margin: 1rem 0;
+  }
+
+  // style the tables that contain the pairs
+  table
+  {
+    // add half the of the element's margins to the table, and the other half with the table cell 
+    // padding
+    margin: 1rem 0.5rem;
+
+    width: 100%;
+  }
+
+  // HACK: This is a hack to display a border radius on the rows since the tr element does not 
+  // its border radisu to be styled
+  tr:nth-child(odd) td
+  {
+    background-color: $smoke;
+
+    &:first-of-type
+    {
+      border-radius: 0.5rem 0 0 0.5rem;
+    }
+
+    &:last-of-type
+    {
+      border-radius: 0 0.5rem 0.5rem 0;
+    }
+  }
+
+  td
+  {
+    width: 50%;
+
+    // type
+    text-align: left;
+    line-height: 2rem;
+
+    &:first-of-type
+    {
+      padding-left: 0.5rem;
+    }
+
+    &:last-of-type
+    {
+      padding-right: 0.5rem;
+    }
+  } 
+}

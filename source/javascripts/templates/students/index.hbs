@@ -1,35 +1,42 @@
-{{view ClassList.EditableListView}}
+<section>
+  {{view ClassList.EditableListView}}
 
-<p>
-  <button {{action updateGroups}}>
-    {{#if groupsEmpty}}
-      Create the lists
-    {{else}}
-      Update the lists
-    {{/if}}
-  </button>
-</p>
+  <p>
+    <button {{action updateGroups}}>
+      {{#if groupsEmpty}}
+        Generate
+      {{else}}
+        Update
+      {{/if}}
+    </button>
+  </p>
+</section>
 
-{{#if groupsEmpty}}
+<section>
+  {{#if groupsEmpty}}
 
-  <p class="instructions">Type in your students' names and press the button.</p>
+    <p class="instructions">
+      Parachute is a tool by <a href="/">Landon Schropp</a> that generates lists of pairs. Each person is paired with every other person once.
+    </p>
 
-{{else}}
+  {{else}}
 
-  {{#each groups}}
+    {{#each groups}}
+      <section class="pairs">
+        <h2>List {{index}}</h2>
 
-    <h2>List {{index}}</h2>
+        <table class="group-list">
+          {{#each this}}
+            <tr>
+              {{#each this }}
+               <td>{{name}}</td>
+              {{/each }}
+            </tr>
+          {{/each}}
+        </table>
+      </section>
 
-    <table class="group-list">
-      {{#each this}}
-        <tr>
-          {{#each this }}
-           <td>{{name}}</td>
-          {{/each }}
-        </tr>
-      {{/each}}
-    </table>
+    {{/each}}
 
-  {{/each}}
-
-{{/if}}
+  {{/if}}
+</section>

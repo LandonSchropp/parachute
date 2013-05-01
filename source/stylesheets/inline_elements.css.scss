@@ -1,0 +1,27 @@
+@import "variables";
+
+a
+{
+  // change the default anchor color from blue
+  color: $milk;
+}
+
+button
+{
+
+  // layout
+  padding: 0.65rem 0;
+  min-width: 18rem;
+  font-size: 1.25rem;
+  line-height: 1.25em;
+
+  // hide the border
+  border-width: 0;
+
+  // style
+  border-radius: 0.5rem;
+  background-color: $white;
+
+  // mix the background gradient colorsto make the button appear to be cut through the middle
+  color: mix($scarlet, $ripe-plum);
+}

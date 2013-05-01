@@ -1,5 +1,6 @@
 {{#each this}}
   <li>
-    {{view Ember.TextField valueBinding="name"}}
+    {{! The placeholder should be parameterized and passed into the editable list. }}
+    {{view Ember.TextField valueBinding="name" placeholder="Type in a name"}}
   </li>
 {{/each}}
