@@ -1,0 +1,10 @@
+{
+	"folders": 
+	[
+		{
+			"folder_exclude_patterns": [ "build", ".sass-cache", ".bundle" ],
+			"file_exclude_patterns": [ "*.sublime-workspace" ],
+			"path": "."
+		}
+	]
+}
