@@ -11,6 +11,13 @@ Parachute.StudentsIndexController = Ember.ArrayController.extend
   listsOfPairsEmpty: (->
     @get("listsOfPairs").length is 0
   ).property("listsOfPairs")
+
+  # Adds an empty student to this controller. If the index is not provided, then the empty student
+  # will be added to the end of this controller.
+  insertEmptyStudent: (index) ->
+
+    index = @get("length") unless index?
+    @insertAt(index, Ember.copy(@get("emptyStudent")))
   
   # Sets the lists of pairs of students. If the content of this controller is:
   # 
