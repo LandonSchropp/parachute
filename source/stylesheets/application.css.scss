@@ -15,6 +15,8 @@ html, body
   font-size: 16px;
   font-family: 'Open Sans', sans-serif;
   color: $white;
+
+  position: relative;
 }
 
 #container
@@ -27,12 +29,24 @@ html, body
   padding: 1px 0;
 
   // create a background color fallback
-  background-color: $scarlet;
+  background-color: $ripe-plum;
+  @include background-image(linear-gradient(top, $ripe-plum, $scarlet));
 
   // set the gradient background and fix it in place
-  @include background-image(linear-gradient(top, $ripe-plum, $scarlet));
   background-attachment: fixed;
 
   // used border box to prevent the padding from causing scroll bars to appear
   box-sizing: border-box;
+
+  // BUG FIX: On iOS devices, the background gradient fails to render on when many elements are
+  // inserted into the DOM. The following properties force a redraw when this happens, which then 
+  // renders the page correctly. I still haven't figured out why this works.
+  &:after
+  {
+    content: "hello";
+    top: 0;
+    position: fixed;
+    z-index: -1;
+    background-color: $ripe-plum;
+  }
 }
