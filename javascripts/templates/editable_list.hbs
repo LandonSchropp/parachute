@@ -7,11 +7,9 @@ function program1(depth0,data) {
   
   var buffer = '', hashTypes;
   data.buffer.push("\n  <li>\n    ");
-  data.buffer.push("\n    ");
-  hashTypes = {'valueBinding': "STRING",'placeholder': "STRING"};
-  data.buffer.push(escapeExpression(helpers.view.call(depth0, "Ember.TextField", {hash:{
-    'valueBinding': ("name"),
-    'placeholder': ("Type in a name")
+  hashTypes = {'valueBinding': "STRING"};
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "Parachute.NameFieldView", {hash:{
+    'valueBinding': ("name")
   },contexts:[depth0],types:["ID"],hashTypes:hashTypes,data:data})));
   data.buffer.push("\n  </li>\n");
   return buffer;
