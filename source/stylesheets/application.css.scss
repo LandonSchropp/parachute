@@ -1,6 +1,7 @@
 @import "normalize";
 @import "bourbon";
 @import "variables";
+@import "mixins";
 @import "inline_elements";
 @import "block_elements";
 @import "editable_lists";
@@ -16,7 +17,10 @@ html, body
   font-family: 'Open Sans', sans-serif;
   color: $white;
 
-  position: relative;
+  @include mobile
+  {
+    font-size: 15px;
+  }
 }
 
 #container
@@ -28,25 +32,20 @@ html, body
   // from collapsing
   padding: 1px 0;
 
-  // create a background color fallback
-  background-color: $ripe-plum;
-  @include background-image(linear-gradient(top, $ripe-plum, $scarlet));
-
-  // set the gradient background and fix it in place
-  background-attachment: fixed;
-
   // used border box to prevent the padding from causing scroll bars to appear
   box-sizing: border-box;
 
-  // BUG FIX: On iOS devices, the background gradient fails to render on when many elements are
-  // inserted into the DOM. The following properties force a redraw when this happens, which then 
-  // renders the page correctly. I still haven't figured out why this works.
-  &:after
-  {
-    content: "hello";
-    top: 0;
-    position: fixed;
-    z-index: -1;
-    background-color: $ripe-plum;
-  }
+  // set the gradient background and fix it in place
+  background-attachment: fixed;
+  background-color: $ripe-plum;
+  @include background-image(linear-gradient(top, $ripe-plum, $scarlet));
+}
+
+// BUG FIX: for some strange reason, mobile safari incorrectly renders background gradients when 
+// the DOM is updated. I've tried every CSS trick I could think of to get this to work, but it 
+// refuses to cooperate. For now, I'm turing off the background gradient and falling back to the
+// background color.
+.ios #container
+{
+  background-image: none;
 }

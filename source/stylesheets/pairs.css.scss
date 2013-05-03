@@ -6,19 +6,26 @@
   margin-top: 2rem;
   margin-bottom: 2rem;
 
+  // Add the padding to the container since the table doesn't use the padding property. Half of the
+  // padding is added here and the other half is added to the table cells.
+  padding: 0 0.5rem;
+
   h2
   {
     // tighten up the space between the header and the talbe
     margin: 1rem 0;
+
+    // override the default padding to add the rest of the spacing to the element
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
 
   // style the tables that contain the pairs
   table
   {
-    // add half the of the element's margins to the table, and the other half with the table cell 
-    // padding
-    margin: 1rem 0.5rem;
+    margin: 1rem 0;
 
+    box-sizing: border-box;
     width: 100%;
   }
 

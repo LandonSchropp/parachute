@@ -25,3 +25,9 @@ button
   // mix the background gradient colorsto make the button appear to be cut through the middle
   color: mix($scarlet, $ripe-plum);
 }
+
+// BUG FIX:; This is part of the bug fix mentioned in the application.css.scss file.
+.ios button
+{
+  color: $ripe-plum;
+}
