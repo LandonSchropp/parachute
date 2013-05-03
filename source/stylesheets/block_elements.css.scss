@@ -1,4 +1,5 @@
 @import "variables";
+@import "mixins";
 
 header, section
 {
@@ -24,6 +25,11 @@ h1
 
   // layout
   font-size: 3.5rem;
+
+  @include mobile
+  {
+    font-size: 3rem;
+  }
 
   // compensate for the typeface's extra spacing by squeezing the line height a little bit
   line-height: 0.75em;
