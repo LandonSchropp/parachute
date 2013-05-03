@@ -1,4 +1,5 @@
 @import "variables";
+@import "mixins";
 
 a
 {
@@ -8,12 +9,16 @@ a
 
 button
 {
-
   // layout
   padding: 0.65rem 0;
   min-width: 18rem;
   font-size: 1.25rem;
   line-height: 1.25em;
+
+  @include mobile
+  {
+    width: 100%;
+  }
 
   // hide the border
   border-width: 0;
